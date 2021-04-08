@@ -1,33 +1,12 @@
-import pandas as pd
-
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import make_pipeline, make_union
 from sklearn.linear_model import LinearRegression, SGDRegressor
-from sklearn.preprocessing import StandardScaler, OneHotEncoder, MinMaxScaler
-from sklearn.feature_extraction.text import TfidfVectorizer
-import xgboost as xgb
-
-from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 
 
 '''
 Building the model
 '''
-
-class PipelineDebuger(BaseEstimator, TransformerMixin):
-    def fit(self, x, y):
-         print(">>debug fit method")
-         return self
-
-    def predict(self, x):
-          print(">>debug predict method")
-          return x
-
-    def transform(self, X):
-          print(">>debug transform method")
-          print(X)
-          print(X.shape)
-          return X
 
 
 class PandasSelector(BaseEstimator, TransformerMixin):
@@ -42,7 +21,6 @@ class PandasSelector(BaseEstimator, TransformerMixin):
         if self.records:
             return X[self.columns].to_dict(orient="records")
         return X[self.columns]
-
 
 
 class FrequencyEncoder(BaseEstimator, TransformerMixin):
@@ -83,13 +61,10 @@ def build_model():
                 MinMaxScaler(),
             ),
 
-
-
         ),
-        # PipelineDebuger(),
 
 
-        # LinearRegression()
+        # LinearRegression(),
         SGDRegressor(random_state=0, max_iter=5)
     )
     return model
