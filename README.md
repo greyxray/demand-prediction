@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/greyxray/demand-pred.svg?branch=master)](https://travis-ci.com/greyxray/demand-pred)
+
 # Age segments
 ## Prepare clean python env
 
