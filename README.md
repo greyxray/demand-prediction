@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/greyxray/demand-pred.svg?branch=master)](https://travis-ci.com/greyxray/demand-pred)
 
-# Age segments
+# Demand predictions
 ## Prepare clean python env
 
 ```bash
