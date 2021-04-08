@@ -67,14 +67,14 @@ def build_model():
                     [
                         ('minmax_weaks_ago', MinMaxScaler(), [
                             'sold_qty_units_1_weeks_ago',
-                            'store_count_1_weeks_ago',
-                            'total_cust_count_1_weeks_ago',
+                            # 'store_count_1_weeks_ago',
+                            # 'total_cust_count_1_weeks_ago',
                             'sold_qty_units_1_weeks_ago__2_weeks_window_size',
-                            'store_count_1_weeks_ago__2_weeks_window_size',
-                            'total_cust_count_1_weeks_ago__2_weeks_window_size',
+                            # 'store_count_1_weeks_ago__2_weeks_window_size',
+                            # 'total_cust_count_1_weeks_ago__2_weeks_window_size',
                             'sold_qty_units_1_weeks_ago__10_halflife_ewm',
-                            'store_count_1_weeks_ago__10_halflife_ewm',
-                            'total_cust_count_1_weeks_ago__10_halflife_ewm'
+                            # 'store_count_1_weeks_ago__10_halflife_ewm',
+                            # 'total_cust_count_1_weeks_ago__10_halflife_ewm'
                             ]),
                     ],
                     remainder='drop'),
@@ -85,6 +85,6 @@ def build_model():
 
         # LinearRegression(),
         # SGDRegressor(random_state=0, max_iter=5)
-        xgb.XGBRegressor(seed=123)
+        xgb.XGBRegressor(eta=0.32, n_estimators=11, seed=123)
     )
     return model
