@@ -6,6 +6,7 @@ from math import sqrt
 from sklearn.metrics import mean_squared_error
 
 from model.build import build_model
+from model.lags import lag_columns, lag_average, lag_ewm
 
 
 RANDOM_SEED = 137
@@ -38,15 +39,22 @@ def main(data, use_grid_cv):
     df['month'] = df.date_of_day.apply(lambda x: x.month)
     df['day'] = df.date_of_day.apply(lambda x: x.day)
 
+    xx, lag_col_names = lag_columns(df, n_intervals=1)
+
+    # Apply the moving averages to lags, not to the targets itself!!!
+    x = lag_average(xx, cols=lag_col_names)
+    x = lag_ewm(x, cols=lag_col_names)
+    print(x.columns)
+
     print("Build model")
-    x = df.sort_values(by='date_of_day')
+    x = x.sort_values(by='date_of_day')
     X_tr, X_te, y_tr, y_te = train_test_split_rounded(x, x["sold_qty_units"],
                                                       test_size=6)
 
     print('train period: from {} to {}'.format(X_tr.date_of_day.min(), X_tr.date_of_day.max()))
     print('evaluation period: from {} to {}'.format(X_te.date_of_day.min(), X_te.date_of_day.max()))
 
-    # Remove first examples with NaNs
+    # Remove first examples with NaNs -> needed for linear models
     train_idx = ~np.isnan(X_tr.store_count_1_weeks_ago__10_halflife_ewm).values.reshape(-1)
     X_tr = X_tr[train_idx]
     y_tr = y_tr[train_idx]

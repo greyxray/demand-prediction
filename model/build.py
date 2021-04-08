@@ -2,7 +2,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import make_pipeline, make_union
 from sklearn.linear_model import LinearRegression, SGDRegressor
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
-
+from sklearn.compose import ColumnTransformer
 
 '''
 Building the model
@@ -59,6 +59,24 @@ def build_model():
                                 'unit_discount_weekly',
                                 'unit_discount_weekly']),
                 MinMaxScaler(),
+            ),
+
+            make_pipeline(
+                ColumnTransformer(
+                    [
+                        ('minmax_weaks_ago', MinMaxScaler(), [
+                            'sold_qty_units_1_weeks_ago',
+                            'store_count_1_weeks_ago',
+                            'total_cust_count_1_weeks_ago',
+                            'sold_qty_units_1_weeks_ago__2_weeks_window_size',
+                            'store_count_1_weeks_ago__2_weeks_window_size',
+                            'total_cust_count_1_weeks_ago__2_weeks_window_size',
+                            'sold_qty_units_1_weeks_ago__10_halflife_ewm',
+                            'store_count_1_weeks_ago__10_halflife_ewm',
+                            'total_cust_count_1_weeks_ago__10_halflife_ewm'
+                            ]),
+                    ],
+                    remainder='drop'),
             ),
 
         ),
