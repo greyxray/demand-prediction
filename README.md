@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/greyxray/demand-pred.svg?branch=master)](https://travis-ci.com/greyxray/demand-pred)
+[![Build Status](https://travis-ci.com/greyxray/demand-prediction.svg?branch=main)](https://travis-ci.com/greyxray/demand-prediction)
 
 # Demand predictions
 ## Prepare clean python env
