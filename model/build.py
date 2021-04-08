@@ -3,6 +3,7 @@ from sklearn.pipeline import make_pipeline, make_union
 from sklearn.linear_model import LinearRegression, SGDRegressor
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.compose import ColumnTransformer
+import xgboost as xgb
 
 '''
 Building the model
@@ -83,6 +84,7 @@ def build_model():
 
 
         # LinearRegression(),
-        SGDRegressor(random_state=0, max_iter=5)
+        # SGDRegressor(random_state=0, max_iter=5)
+        xgb.XGBRegressor(seed=123)
     )
     return model
