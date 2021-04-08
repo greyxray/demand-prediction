@@ -13,7 +13,8 @@ RANDOM_SEED = 137
 np.random.seed(RANDOM_SEED)
 
 
-def train_test_split_rounded(df, target=None, date_col="date_of_day", test_size=6):
+def train_test_split_rounded(df, target=None, date_col="date_of_day",
+                             test_size=6):
     """
         Note: the test size is in month
     """
@@ -51,11 +52,14 @@ def main(data, use_grid_cv):
     X_tr, X_te, y_tr, y_te = train_test_split_rounded(x, x["sold_qty_units"],
                                                       test_size=6)
 
-    print('train period: from {} to {}'.format(X_tr.date_of_day.min(), X_tr.date_of_day.max()))
-    print('evaluation period: from {} to {}'.format(X_te.date_of_day.min(), X_te.date_of_day.max()))
+    print('train period: from {} to {}'.format(
+        X_tr.date_of_day.min(), X_tr.date_of_day.max()))
+    print('evaluation period: from {} to {}'.format(
+        X_te.date_of_day.min(), X_te.date_of_day.max()))
 
     # Remove first examples with NaNs -> needed for linear models
-    train_idx = ~np.isnan(X_tr.store_count_1_weeks_ago__10_halflife_ewm).values.reshape(-1)
+    train_idx = ~np.isnan(
+        X_tr.store_count_1_weeks_ago__2_weeks_window_size).values.reshape(-1)
     X_tr = X_tr[train_idx]
     y_tr = y_tr[train_idx]
 

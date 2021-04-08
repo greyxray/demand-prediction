@@ -1,6 +1,6 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import make_pipeline, make_union
-from sklearn.linear_model import LinearRegression, SGDRegressor
+# from sklearn.linear_model import LinearRegression, SGDRegressor
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.compose import ColumnTransformer
 import xgboost as xgb
@@ -46,7 +46,8 @@ def build_model():
             ),
 
             make_pipeline(
-                PandasSelector(["hierarchy_level2_desc", "hierarchy_level3_desc"]),
+                PandasSelector(["hierarchy_level2_desc",
+                                "hierarchy_level3_desc"]),
                 OneHotEncoder(),
             ),
 

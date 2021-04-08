@@ -1,9 +1,9 @@
-
 TARGET_COLUMNS = [
     "sold_qty_units",
     "store_count",
     "total_cust_count",
 ]
+
 
 def lag_columns(
     df,
