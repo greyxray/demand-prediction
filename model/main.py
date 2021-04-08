@@ -21,10 +21,10 @@ def train_test_split_rounded(df, target=None, date_col="date_of_day", test_size=
     idx = df[date_col] < pivot
 
     # train, test
-    if target:
-        return df[idx], df[~idx], target[idx], target[~idx]
-    else:
+    if target is None:
         return df[idx], df[~idx]
+    else:
+        return df[idx], df[~idx], target[idx], target[~idx]
 
 
 @click.command()
