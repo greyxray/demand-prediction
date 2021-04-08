@@ -53,7 +53,7 @@ def build_model():
 
             make_pipeline(
                 PandasSelector(["art_name"]),
-                FrequencyEncoder("art_name"),
+                OneHotEncoder()
             ),
 
             make_pipeline(
