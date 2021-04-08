@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/greyxray/demand-prediction.svg?branch=main)](https://travis-ci.com/greyxray/demand-prediction)
 
-# Demand predictions
+# Demand prediction
 ## Prepare clean python env
 
 ```bash
